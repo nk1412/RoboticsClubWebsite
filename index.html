@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Robotics Club of GCET, fostering innovation and learning in robotics and technology.">
+    <meta name="keywords" content="Robotics, GCET, Engineering, Technology, Innovation">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="https://robotica.roboticsclubgcet.org/img/logo1.png" alt="Logo">
+    <title>Robotics Club - GCET</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f8ff, #add8e6);
+            color: #121212;
+        }
+        /* Full-screen preloader with logo */
+        
+        #preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+            /* Smooth fade out */
+        }
+        /* Preloader logo */
+        
+        .preloader-logo {
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: -15px;
+            width: 200px;
+            height: auto;
+            animation: fadeOutSlideUp 2.5s ease-out forwards;
+            /* Visible for 2s, then fade out */
+        }
+        /* Animation for logo fade-out and slide-up */
+        
+        @keyframes fadeOutSlideUp {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: scale(1.05);
+                /* Slight zoom-in before fading */
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px);
+                /* Slide up and fade out */
+            }
+        }
+        /* Main content is hidden initially */
+        
+        .projects,
+        .Faculty,
+        .Footer {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-out;
+        }
+        /***********/
+        /* Navbar */
+        /***********/
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            background-color: #007EA7;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: -15px;
+            transition: transform 0.5s ease;
+            /* Smooth animation */
+        }
+        
+        .navbar a {
+            color: #f1f1f1;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            color: #03C03C;
+        }
+        
+        .navbar .logo img:hover {
+            transform: rotate(360deg) scale(1.1);
+            transition: transform 1s ease;
+        }
+        /*Banner Section */
+        
+        .hero {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("Screenshot 2024-09-29 214501.png");
+            background-size: 140% 85%;
+            background-position: center;
+            color: #f1f1f1;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 1rem;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .hero h1 {
+            font-size: 4vw;
+            /* Responsive font size */
+            letter-spacing: 0.1vw;
+            /* Responsive letter spacing */
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            color: #f1f1f1;
+            margin-top: -95px;
+            margin-right: -150px;
+            opacity: 0;
+            /* Initially invisible */
+            transform: translateY(-100vh);
+            /* Start from top */
+            animation: slideFromTop 1s ease forwards 0.5s;
+            /* Slide from top */
+        }
+        
+        .hero p {
+            font-size: 2vw;
+            /* Responsive font size */
+            margin-top: 1rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            color: #f1f1f1;
+            margin-right: -170px;
+            opacity: 0;
+            /* Initially invisible */
+            transform: translateY(-100vh);
+            /* Start from top */
+            animation: slideFromTop 1.2s ease forwards 1s;
+            /* Slide with a delay */
+        }
+        /* Keyframes for slide-in from top animation */
+        
+        @keyframes slideFromTop {
+            0% {
+                opacity: 0;
+                transform: translateY(-100vh);
+                /* Start off-screen at the top */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                /* End at original position */
+            }
+        }
+        /*About Section*/
+        
+        .about {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+        }
+        
+        .card {
+            background-color: rgba(173, 216, 230, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(10vh);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card p {
+            line-height: 1.6;
+        }
+        /***Button***/
+        
+        .button-33 {
+            background-color: #87CEEB;
+            border-radius: 100px;
+            box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+            color: blue;
+            cursor: pointer;
+            display: inline-block;
+            font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+            padding: 7px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            margin-left: 20px;
+            border: 0;
+            font-size: 16px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+        
+        .button-33:hover {
+            box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+            transform: scale(1.05) rotate(-1deg);
+            color: #121212;
+            /* Darken the text color */
+        }
+        /* Keyframes for animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .project {
+            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            justify-content: center;
+            flex-wrap: wrap;
+            /* Ensure content wraps on smaller screens */
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        /* Center h2 and content for both sections */
+        
+        section.projects h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            /* Add some spacing below the heading */
+        }
+        
+        .projects h1,
+        p {
+            text-align: center;
+        }
+        
+        .projects.button-33 {
+            align-items: center;
+        }
+        
+        .project-card {
+            margin: 0 auto;
+            /* Center the card */
+            flex: 1 1 250px;
+            /* Ensure cards resize properly */
+            background-color: rgba(173, 216, 230, 0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        
+        .project-card:hover,
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .project-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .project-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .project-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        .project-card img {
+            padding: 10px;
+            border-radius: 5px;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        
+        .Faculty h1,
+        h3 {
+            text-align: center;
+        }
+        
+        .Student h1,
+        h3 {
+            text-align: center;
+        }
+        
+        .Faculty h1,
+        .Student h1 {
+            margin-top: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .Faculty h3,
+        .Student h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        /****************/
+        /* Team Section */
+        /****************/
+        
+        section.team h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            /* Add some spacing below the heading */
+        }
+        
+        .DISPLAYFLEX {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1 1 45%;
+            margin: 15px;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .team-card {
+            border-radius: 20px;
+            text-align: center;
+            margin: 10px;
+            max-width: 300px;
+            flex: 1 1 300px;
+            background-color: rgba(173, 216, 230, 0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        
+        .team {
+            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            justify-content: flex-start;
+            /*justify-content: center;*/
+            flex-wrap: wrap;
+            /* Ensure content wraps on smaller screens */
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team h1 {
+            font-size: 2.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .team-card img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        
+        .team-card h3 {
+            font-size: 1.3rem;
+            margin: 10px 0;
+            color: #0b3054;
+        }
+        
+        .team-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #5a5a5a;
+        }
+        /* Center the icons */
+        
+        .team-card .social-icons {
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            color: #0b3054;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            color: #095ea6;
+        }
+        /***************/
+        /*Footer Section*/
+        /***************/
+        
+        footer {
+            background-color: #007EA7;
+            color: #f1f1f1;
+            padding: 20px 0;
+            text-align: center;
+            background-attachment: fixed;
+            flex-wrap: wrap;
+        }
+        
+        footer a {
+            color: #f1f1f1;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: #03C03C;
+        }
+        
+        footer .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        footer .address {
+            margin-top: -45px;
+            margin-left: -10px;
+        }
+        
+        footer .logo img {
+            margin-left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 5px;
+            transition: transform 0.5 ease;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        /* Social media links style */
+        
+        .social-media a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .social-media a:hover {
+            color: #03C03C;
+        }
+        
+        footer .social-media a {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        footer .social-media a:hover {
+            transform: scale(1.2);
+            /* Enlarge icons on hover */
+            color: #03C03C;
+            /* Change color */
+        }
+        
+        footer p,
+        h1,
+        h2,
+        img {
+            animation: fadeInFooter 3s ease-in-out;
+        }
+        
+        @keyframes fadeInFooter {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        /* Phone and Mail symbols */
+        
+        .contact-info i {
+            margin-right: 10px;
+        }
+        /**************/
+        /*Responsiveness*/
+        /**************/
+        /* Responsive adjustments for tablet and mobile */
+        
+        @media screen and (max-width: 768px) {
+            .hero {
+                height: 60vh;
+                /* Reduce height for small screens */
+                background-size: auto;
+                /* Ensure the image covers the background */
+                background-position: center;
+                /* Center the background image */
+                padding: 1rem;
+                margin-top: 0px;
+            }
+            .hero h1 {
+                font-size: 4vw;
+                /* Slightly larger font for tablets */
+                letter-spacing: 0vw;
+            }
+            .hero p {
+                font-size: 2vw;
+                margin: left 50px;
+                ;
+            }
+            .team-card,
+            .project-card {
+                flex: 1 1 calc(45% - 20px);
+                /* For smaller screens */
+                max-width: 100%;
+                margin: 15px;
+            }
+            footer .address {
+                margin-top: 10px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .hero h1 {
+                font-size: 7vw;
+                letter-spacing: 1.5vw;
+                font-size: 8vw;
+                margin-right: -50px;
+                /* Better margin control for small screens */
+            }
+            .hero p {
+                font-size: 4vw;
+                line-height: 1.4;
+                margin-right: 0;
+                /* Remove margin for better spacing */
+            }
+            .team-card {
+                flex: 1 1 100%;
+                /* Stack cards on mobile */
+            }
+        }
+        /* Initially hide elements */
+        
+        .card,
+        .project-card,
+        .team-card,
+        .Footer {
+            opacity: 0;
+            transform: translateY(50px);
+            /* Slightly translate down */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            /* Smooth transition */
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+            /* Return to normal position */
+        }
+        
+        .burger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+        }
+        
+        .burger:hover {
+            color: #00b894;
+        }
+        
+        .menu {
+            display: flex;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .burger {
+                display: block;
+            }
+            .menu {
+                display: none;
+                flex-direction: column;
+                background-color: #007EA7;
+                position: absolute;
+                top: 70px;
+                width: 100%;
+            }
+            .menu.show {
+                display: flex;
+            }
+            .menu a {
+                padding: 0.75rem;
+                border-bottom: 1px solid #f1f1f1;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.card,.hero, .project-card, .team-card,.Footer,.heroElements'); // Select elements to observe
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible'); // Add the 'visible' class when the element is in view
+                        observer.unobserve(entry.target); // Stop observing once the element is visible
+                    }
+                });
+            }, {
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            });
+
+            elements.forEach(element => {
+                observer.observe(element); // Observe each element
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const burger = document.querySelector('.burger');
+            const menu = document.querySelector('.menu');
+
+            burger.addEventListener('click', () => {
+                menu.classList.toggle('show');
+            });
+            burger.addEventListener('click', () => {
+                menu.classList.toggle('close');
+            });
+        });
+
+        // Script for preloader and main content transition
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0'; // Fade out the preloader
+
+                setTimeout(() => {
+                    preloader.style.display = 'none'; // Completely hide the preloader
+
+                    // Show other sections like projects, footer, etc.
+                    document.querySelectorAll('.projects, .Faculty, .Footer').forEach(el => {
+                        el.style.display = 'block';
+                        el.style.opacity = '1'; // Fade in the main content
+                    });
+
+                }, 800); // Delay to match preloader fade-out
+            }, 700); // Show logo for 2 seconds
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="preloader">
+        <img src="https://robotica.roboticsclubgcet.org/img/RClogo1.jpg" alt="Logo" class="preloader-logo">
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#"><img src="https://robotica.roboticsclubgcet.org/img/RClogo1.jpg" alt="Robotics Club Logo"></a>
+            <h1><a href="#" style="color: #f1f1f1; text-decoration: none;">ROBOTICS CLUB</a></h1>
+        </div>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="About.html">About</a>
+            <a target="_blank" href="https://robotica.roboticsclubgcet.org/index.html">Events</a>
+            <a href="projects.html">Projects</a>
+            <a href="Our_Team.html">Our Team</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+        <div class="burger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="heroElements">
+            <h1>Welcome to the Robotics Club</h1>
+            <p>Innovate, Build, and Shape the Future with Robotics</p>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <div class="card">
+            <h3>Our Mission</h3>
+            <p>We strive to advance the field of robotics through innovation and collaboration, fostering creativity and technical expertise in our community.</p>
+        </div>
+        <div class="card">
+            <h3>Our Events</h3>
+            <p>Our events are designed to inspire, educate, and challenge students while building a strong community of robotics enthusiasts.</p>
+        </div>
+        <div class="card">
+            <h3>Get Involved</h3>
+            <p>Join our club to be part of a team of passionate individuals who are shaping the future of robotics and AI.</p>
+        </div><br>
+    </section>
+
+    <section id="projects" class="projects">
+        <h1>Projects in Club</h1><br>
+        <p>From autonomous vehicles to humanoid robots, we work on exciting and impactful projects that push the boundaries of technology.</p><br>
+        <center><a href="projects.html"><button class="button-33" role="button">View more</button></a></center>
+        <div class="project">
+            <div class="project-card">
+                <img src="https://m.media-amazon.com/images/I/51jFtCp-1mL._SX425_.jpg" alt="Drone Project">
+                <h3>Drone</h3>
+                <p>Developed an autonomous drone for surveying agricultural fields using image recognition.</p>
+            </div>
+            <div class="project-card">
+                <img src="Screenshot 2024-09-29 192825.png" alt="Humanoid Robot Project">
+                <h3>Humanoid Robot</h3>
+                <p>Created a humanoid robot capable of performing basic tasks and interacting with humans.</p>
+            </div>
+            <div class="project-card">
+                <img src="https://3.imimg.com/data3/CI/KO/MY-7168920/snake-robot-500x500.jpg" alt="Drone Project">
+                <h3>Snake Robot</h3>
+                <p>Developed an autonomous drone for surveying agricultural fields using image recognition.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="Faculty">
+        <div>
+            <h1>Faculty Coordinators</h1>
+            <h3>Meet Our Experienced Faculty Courdinators</h3><br>
+            <div class="Faculty-team">
+                <p>The Board members for the ROBOTICA</p><br>
+                <div class="DISPLAYFLEX">
+                    <div class="team-card">
+                        <img src="praveenpicupdated-min.JPG" alt="Mem1-Img"></img>
+                        <h3>G.Praveen Kumar</h3>
+                        <p>Convener</p>
+                        <p>Sr.Assistant Professor<br>Department of CSE</p>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/praveenkumar-gopagoni-69a48136/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.linkedin.com/in/robotics-club-gcet-0974282a6/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="WhatsApp Image 2024-09-29 at 11.59.20 AM.jpeg" alt="Mem1-Img"></img>
+                        <h3>Dr.G.Vallathan</h3>
+                        <p>Co-Convener</p>
+                        <p>Associate Proffesor<br>Department of ECE</p>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/robotics-club-gcet-0974282a6/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCHU5JIkqfD2z1KMc4c1nW4zdArnxBM3cCcQ&s" alt="Mem1-Img"></img>
+                        <h3>K.Venkatesh</h3>
+                        <p>Member</p>
+                        <p><strong>Sr.Assitant Proffesor</strong><br>Department of ME</p>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/robotics-club-gcet-0974282a6/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="WhatsApp Image 2024-09-28 at 9.19.55 PM.jpeg" alt="Mem1-Img"></img>
+                        <h3>Ch.Navaneetha</h3>
+                        <p>Member</p>
+                        <p><strong>Programmer</strong><br>Department of CSE</p>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/robotics-club-gcet-0974282a6/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div>
+        <center>
+            <h1>OUR TEAM</h1>
+        </center>
+    </div>
+    <!-- Our Team Section -->
+    <section class="Student">
+        <div>
+            <h1>Student Coordinators</h1>
+            <div class="Student-team">
+                <h3>Meet Our Experienced Team Members</h3><br>
+                <p>The Board members for the ROBOTICA Chapter-2 <br>(2023-2024)</p><br>
+                <center><a href="Our_Team.html"><button class="button-33">View More</button></a></center>
+                <div class="DISPLAYFLEX">
+                    <div class="team-card">
+                        <img src="WhatsApp Image 2024-09-25 at 6.02.41 PM.jpeg" alt="Mem1-Img"></img>
+                        <h3>Thakur Tajaeshwar Singh</h3>
+                        <p>President</p>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/thakur-tejaeshwar-singh-b15359281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/tejaeshwar_singh?igsh=MWY1Y2R4aTc1cHpseg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="WhatsApp Image 2024-09-27 at 12.51.53 AM.jpeg" alt="Mem1-Img"></img>
+                        <h3>Ch.Shashank</h3>
+                        <p>Vice President</p>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/shashank-chepuri-26ba12278?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/__bunnyonline__?utm_source=qr&igsh=MXN5ZXIwOTlnY2dscw==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="WhatsApp Image 2024-09-25 at 6.09.52 PM.jpeg" alt="Mem1-Img"></img>
+                        <h3>B.Hemanth Reddy</h3>
+                        <p>Tech Lead</p>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/siri-chandana-144476291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/siri_chandxna?igsh=MTUwNmNwdXJzNTNkdQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="WhatsApp Image 2024-09-25 at 7.50.23 PM.jpeg" alt="Mem1-Img"></img>
+                        <h3>J.Sairaj</h3>
+                        <p>Joint Secretary</p>
+                        <div class="social-icons">
+                            <a href="www.linkedin.com/in/sairaj-japu-6a04842a0" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/japu_sairaj/?igsh=ZXBvOXl4N3NuOGhi" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="Footer">
+        <div>
+            <div>
+                <div class="logo">
+                    <a href="#"><img src="https://robotica.roboticsclubgcet.org/img/RClogo1.jpg" alt="Robotics Club Logo"></a>
+                    <h1><a href="#" style="color: #f1f1f1; text-decoration: none;">ROBOTICS CLUB</a></h1>
+                </div>
+                <div class="address">
+                    <div>
+                        <h2>Get In Touch</h2><br>
+                        <p><i class="fas fa-map-marker-alt"></i>
+                            <a href="https://www.google.com/maps/place/Geethanjali+College+of+Engineering+and+Technology/@17.5205503,78.6310273,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb9d3704b16971:0x522242e0977760ef!8m2!3d17.5205503!4d78.6310273!16s%2Fm%2F0fpk6fh?entry=ttu&g_ep=EgoyMDI0MDkxNy4wIKXMDSoASAFQAw%3D%3D"
+                                target="_blank">
+                  Geethanjali College of Engineering<br> and Technology, Cheeryala(V) <br>Keesara(M), Medchal(D),<br> Telangana,	 INDIA,<br> Pin Code-501301
+                </a>
+                        </p>
+                    </div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone-alt"></i> +012 345 67890</p>
+                        <p><i class="fas fa-envelope"></i><a href="mailto:robotics@gcet.edu.in" target="_blank">robotics@gcet.edu.in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div><br>
+            <hr><br>
+            <p>&copy; 2024 Robotics Club, GCET</p>
+            <p><a href="https://www.linkedin.com/in/sairaj-japu-6a04842a0/" target="_blank">Designed By J.Sairaj</a>& Nandha kishore</p>
+            <div class="social-media">
+                <a href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQHCJbt0PrIhqQAAAZILc-pYkCMWfiMqDAYYCf7vmGh7b-W5grfglD50xhP96hkmZWT2rOl38fR5U9laoD5OzkzdMwkbp8dQ_xD1yleSnkY4iC5trTbWS_Kjj4ZKKRJcee87JEs=&original_referer=https://robotica.roboticsclubgcet.org/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Frobotics-club-gcet-0974282a6"
+                    target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/i/flow/login?redirect_after_login=%2FRoboticsGCET" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/roboticsclub.gcet/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

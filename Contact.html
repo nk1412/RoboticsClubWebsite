@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Robotics Club of GCET, fostering innovation and learning in robotics and technology.">
+        <meta name="keywords" content="Robotics, GCET, Engineering, Technology, Innovation">
+        <title>Robotics Club - GCET</title>
+        <link rel="icon" href="https://robotica.roboticsclubgcet.org/img/logo1.png" alt="Logo">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+                 /* Base Styles */
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              font-family: 'Roboto', sans-serif;
+            }
+
+            html {
+              scroll-behavior: smooth;
+            }
+
+            body {
+                background: linear-gradient(135deg, #f0f8ff, #e0ffff); /* Light cyan gradient */
+                color: #121212;
+            }
+            
+            /* Navbar */
+            .navbar {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0.5rem;
+              background-color:#4682B4;
+              color: #f1f1f1;
+              position: fixed;
+              width: 100%;
+              top: 0;
+              z-index: 1000;
+            }
+        
+            .navbar .logo {
+              display: flex;
+              align-items: center;
+            }
+        
+            .navbar .logo img {
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              object-fit: cover;
+              margin-right: -15px;
+              transition: transform 0.5s ease; /* Smooth animation */
+            }
+
+            .navbar .logo img:hover {
+                  transform: rotate(360deg) scale(1.1); /* Rotate and scale */
+            }
+
+            .navbar a {
+              color: #f1f1f1;
+              text-decoration: none;
+              margin: 0 1rem;
+              transition: color 0.3s ease;
+            }
+ 
+            .navbar a:hover {
+                 color: #00b894; /* Light Green for hover */
+            } 
+            /* Hero Section */
+            .hero {
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                height: 95vh;
+                background: linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+                            url('https://img.theweek.in/content/dam/week/news/sci-tech/2018/january/robot-robotics-intelligence-3d-rendering-ai-robot-think-computer.jpg');  
+                color: #f1f1f1;
+                text-align: center;
+                padding: 2rem;
+                animation: fadeIn 1.5s ease-in-out;
+                background-size: cover;
+                background-attachment: fixed; /* Parallax effect */
+                float: left;
+                width: 100%;
+                margin-bottom: 40px;
+            }
+
+            /* Ensure hero text remains responsive */
+            .hero h1 {
+                font-size: 4rem;
+                letter-spacing: 2px;
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+                transform: translateY(-100vh); /* Start from top */
+                animation: slideFromTop 1s ease forwards 0.5s; /* Slide from top */
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+                margin-top: 1rem;
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+                transform: translateY(-100vh); /* Start from top */
+                animation: slideFromTop 1.2s ease forwards 1s; /* Slide with a delay */
+            }
+
+            /* Contact Section */
+            .contact {
+              padding: 3rem 1.5rem;
+              background-color: #f0f8ff;
+              text-align: center;
+            }
+
+            .contact h1 {
+              font-size: 2rem;
+              margin-bottom: 2rem;
+              color: #121212;
+            }
+
+            .contact-container {
+              max-width: 600px;
+              margin: 0 auto;
+              background-color: rgba(173, 216, 230, 0.2);
+              padding: 2rem;
+              border-radius: 10px;
+              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .contact form {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+            }
+
+            .contact form input, .contact form textarea {
+              width: 100%;
+              padding: 0.75rem;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              font-size: 1rem;
+              font-family: 'Roboto', sans-serif;
+            }
+
+            .contact form textarea {
+              resize: vertical;
+              min-height: 150px;
+            }
+
+            .contact form button {
+              padding: 0.75rem 1.5rem;
+              background-color: #4682B4;
+              color: #fff;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+            }
+
+            .contact form button:hover {
+              background-color: #00b894;
+            }
+
+            button:hover, button:focus, button:active {
+              background-color: #006666; /* Darker shade of the hover color */
+              outline: none; /* Remove outline on focus */
+            }
+
+            /* Initial state before animation */
+            .contact-container {
+              opacity: 0;
+              transform: translateY(50px); /* Move it down initially */
+              transition: all 1s ease-in-out;
+            }
+
+            /* When the contact container is visible */
+            .contact-container.visible {
+              opacity: 1;
+              transform: translateY(0); /* Move it to its original position */
+            }
+
+
+            /* Keyframes for slide-in from top animation */
+            @keyframes slideFromTop {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-100vh); /* Start off-screen at the top */
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0); /* End at original position */
+                }
+            }
+
+
+            /* Footer Styles */
+            footer {
+              background-color: #4682B4;
+              color: #f1f1f1;
+              padding: 20px 0;
+              text-align: center;
+              background-attachment: fixed;
+            }
+
+            footer a {
+              color: #f1f1f1;
+              text-decoration: none;
+            }
+
+            footer a:hover {
+              color: #03C03C;
+            }
+
+            footer .logo {
+              display: flex;
+              align-items: center;
+            }
+
+            footer .address{
+             margin-top: -45px;  
+            }
+
+            footer .logo img {
+              margin-left: 20px;
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              object-fit: cover;
+              margin-right: 5px;
+              transition: transform 0.8 ease;
+            }
+             footer .logo img:hover {
+                transform: scale(1.1);
+            }
+            /* Initial state before animation for footer */
+            footer {
+              opacity: 0;
+              transform: translateY(50px); /* Move it down initially */
+              transition: all 1s ease-in-out;
+            }
+
+            /* When the footer is visible */
+            footer.visible {
+              opacity: 1;
+              transform: translateY(0); /* Move it to its original position */
+            }
+
+            .social-media a {
+              margin: 0 15px;
+              color:  white;
+              text-decoration: none;
+              transition: color 0.3s ease;
+            }
+
+            .social-media a:hover {
+              color: #00b894;
+            }
+
+            footer .social-media a {
+              transition: transform 0.3s ease, color 0.3s ease;
+            }
+
+            footer .social-media a:hover {
+              transform: scale(1.2); /* Enlarge icons on hover */
+              color: #03C03C; /* Change color */
+            }
+
+            footer p,h1,h2,img {
+              animation: fadeInFooter 3s ease-in-out;
+            }
+
+            @keyframes fadeInFooter {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+
+            /* Phone and Mail symbols */
+            .contact-info i {
+              margin-right: 10px;
+            }
+
+            .burger {
+              display: none;
+              cursor: pointer;
+              font-size: 1.8rem;
+            }
+
+          .burger:hover {
+              color: #00b894;
+          }
+
+          .menu {
+              display: flex;
+              transition: all 0.3s ease-in-out;
+          }
+
+          @media screen and (max-width: 768px) {
+              .burger {
+                  display: block;
+              }
+
+              .menu {
+                  display: none;
+                  flex-direction: column;
+                  background-color: #4682B4;
+                  position: absolute;
+                  top: 70px;
+                  width: 100%;
+              }
+
+              .menu.show {
+                  display: flex;
+              }
+
+              .menu a {
+                  padding: 0.75rem;
+                  border-bottom: 1px solid #f1f1f1;
+              }
+          }
+          
+          @media (max-width: 768px) {
+              .contact h1 {
+                  font-size: 1.5rem;
+              }
+
+              .contact form input, .contact form textarea {
+                  font-size: 0.9rem;
+              }
+              .hero {
+                  background-position: center;
+                  background-size: contain; /* Adjust the background size */
+                  height: 30cap;
+                }
+          
+              .menu {
+                  display: none;
+              }
+              .navbar {
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 10cap;
+              }
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+
+                .hero p {
+                    font-size: 1.1rem;
+                }
+
+                .contact-container {
+                    padding: 1rem;
+                }
+
+                footer p {
+                    font-size: 0.9rem;
+                    line-height: 1.4;
+                }
+
+                footer .address{
+                  margin-top: 10px;
+                }
+                .social-media a {
+                    font-size: 1.2rem;
+                }
+            }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const contactContainer = document.querySelector('.contact-container');
+        const footer = document.querySelector('footer');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible'); // Add the visible class when in view
+              observer.unobserve(entry.target); // Stop observing once it's visible
+            }
+          });
+        }, {
+          threshold: 0.2 // Trigger when 20% of the element is visible
+        });
+    
+        // Observe both the contact container and footer
+        observer.observe(contactContainer);
+        observer.observe(footer);
+      });
+
+      document.addEventListener("DOMContentLoaded", function() {
+            const burger = document.querySelector('.burger');
+            const menu = document.querySelector('.menu');
+
+            burger.addEventListener('click', () => {
+                menu.classList.toggle('show');
+            });
+            burger.addEventListener('click',() =>{
+              menu.classList.toggle('close');
+            });
+        });
+    </script>
+    
+</head>
+    <body>
+        
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#"><img src="https://robotica.roboticsclubgcet.org/img/RClogo1.jpg" alt="Robotics Club Logo" loading="lazy"></a>
+                <h1><a href="#" style="color: #f1f1f1; text-decoration: none;">ROBOTICS CLUB</a></h1>
+            </div>
+            <div class="menu">
+                <a href="index.html">Home</a>
+                <a href="About.html">About</a>
+                <a href="https://robotica.roboticsclubgcet.org/index.html" target="_blank">Events</a>
+                <a href="projects.html">Projects</a>
+                <a href="Our_Team.html">Our Team</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="burger">
+              <i class="fas fa-bars"></i>
+            </div>
+          </nav>
+          <!-- Hero Section -->
+            <section class="hero">
+              <div>
+                <h1>Contact</h1>
+                <p>Home / Contact us</p>
+              </div>
+            </section>
+        
+          <main>
+            <section class="contact">
+                <h1 style="padding-top: 50px;">If You Have Any Query,<br> Please Contact Us</h1>
+                <div class="contact-container">
+                  <h2>Feel Free to ask</h2><br>
+                  <form action="" method="post">
+                      <input type="text" name="name" id="name" required placeholder="Enter your Name">
+                      <input type="email" name="email" id="email" required placeholder="Enter your College Email">
+                      <input type="text" name="subject" id="subject" required placeholder="Subject of the Message">
+                      <textarea id="message" name="message" required placeholder="Write your Message here"></textarea>
+                      <button type="submit">Send Message</button>
+                  </form>
+                </div>
+            </section>
+          </main>
+
+         <!-- Footer -->
+        <footer>
+          <div>
+              <div>
+                <div class="logo">
+                  <a href="#"><img src="https://robotica.roboticsclubgcet.org/img/RClogo1.jpg" alt="Robotics Club Logo"></a>
+                  <h1><a href="#" style="color: #f1f1f1; text-decoration: none;">ROBOTICS CLUB</a></h1>
+                </div>
+                <div class="address">
+                  <div>
+                    <h2>Get In Touch</h2><br>
+                    <p><i class="fas fa-map-marker-alt"></i>
+                      <a target="_blank" href="https://www.google.com/maps/place/Geethanjali+College+of+Engineering+and+Technology/@17.5205503,78.6310273,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb9d3704b16971:0x522242e0977760ef!8m2!3d17.5205503!4d78.6310273!16s%2Fm%2F0fpk6fh?entry=ttu&g_ep=EgoyMDI0MDkxNy4wIKXMDSoASAFQAw%3D%3D">
+                        Geethanjali College of Engineering<br> and Technology, Cheeryala(V) <br>Keesara(M), Medchal(D),<br> Telangana,	 INDIA,<br> Pin Code-501301
+                      </a>
+                    </p>
+                  </div>
+                  <div class="contact-info">
+                    <p><i class="fas fa-phone-alt"></i> +012 345 67890</p>
+                    <p><i class="fas fa-envelope"></i><a target="_blank" href="mailto:robotics@gcet.edu.in">robotics@gcet.edu.in</a></p>
+                  </div>
+                </div>	
+              </div>
+          </div>		
+          <div><br><hr><br>
+            <p>&copy; 2024 Robotics Club, GCET</p>
+            <p> Designed By J.Sairaj & Nanda Kishore</p>
+            <div class="social-media">
+              <a target="_blank" href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQHCJbt0PrIhqQAAAZILc-pYkCMWfiMqDAYYCf7vmGh7b-W5grfglD50xhP96hkmZWT2rOl38fR5U9laoD5OzkzdMwkbp8dQ_xD1yleSnkY4iC5trTbWS_Kjj4ZKKRJcee87JEs=&original_referer=https://robotica.roboticsclubgcet.org/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Frobotics-club-gcet-0974282a6"><i class="fab fa-linkedin"></i></a>
+              <a target="_blank" href="https://x.com/i/flow/login?redirect_after_login=%2FRoboticsGCET"><i class="fab fa-twitter"></i></a>
+              <a target="_blank" href="https://www.instagram.com/roboticsclub.gcet/"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </footer>        
+    </body>
+</html>
+
+      

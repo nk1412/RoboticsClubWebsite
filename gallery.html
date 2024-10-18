@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Robotics Club of GCET, fostering innovation and learning in robotics and technology.">
+        <meta name="keywords" content="Robotics, GCET, Engineering, Technology, Innovation">
+        <title>Robotics Club - GCET</title>
+        <link rel="icon" href="https://robotica.roboticsclubgcet.org/img/logo1.png" alt="Logo">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+                 /* Base Styles */
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              font-family: 'Roboto', sans-serif;
+            }
+
+            html {
+              scroll-behavior: smooth;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                background: linear-gradient(135deg, #f0f8ff, #e0ffff); /* Light cyan gradient */
+                color: #121212;
+            }
+            html, body {
+              overflow-x: hidden; /* Prevent horizontal scrolling */
+            }            
+            /* Navbar */
+            .navbar {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0.5rem;
+              background-color:#4682B4;
+              color: #f1f1f1;
+              position: fixed;
+              width: 100%;
+              top: 0;
+              z-index: 1000;
+            }
+        
+            .navbar .logo {
+              display: flex;
+              align-items: center;
+            }
+        
+            .navbar .logo img {
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              object-fit: cover;
+              margin-right: -15px;
+              transition: transform 0.5s ease; /* Smooth animation */
+            }
+
+            .navbar .logo img:hover {
+                  transform: rotate(360deg) scale(1.1); /* Rotate and scale */
+            }
+
+            .navbar a {
+              color: #f1f1f1;
+              text-decoration: none;
+              margin: 0 1rem;
+              transition: color 0.3s ease;
+            }
+ 
+            .navbar a:hover {
+                 color: #00b894; /* Light Green for hover */
+            } 
+            /* Hero Section */
+            .hero {
+                margin-top: 50px;
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                height: 90vh;
+                background: linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+                            url('pixelcut-export.jpeg');  
+                color: #f1f1f1;
+                text-align: center;
+                padding: 2rem;
+                animation: fadeIn 1.5s ease-in-out;
+                background-size: cover;
+                background-attachment: fixed; /* Parallax effect */
+                float: left;
+                width: 100%;
+                margin-bottom: 40px;
+            }
+
+            /* Ensure hero text remains responsive */
+            .hero h1 {
+                font-size: 4rem;
+                letter-spacing: 2px;
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+                transform: translateY(-100vh); /* Start from top */
+                animation: slideFromTop 1s ease forwards 0.5s; /* Slide from top */
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+                margin-top: 1rem;
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+                transform: translateY(-100vh); /* Start from top */
+                animation: slideFromTop 1.2s ease forwards 1s; /* Slide with a delay */
+            }
+            .gallery{
+              padding: 50px;
+                text-align: center;
+            }
+
+            .gallery h1 {
+                font-size: 36px;
+                margin-bottom: 30px;
+                color: #333;
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+                gap: 20px;
+                padding-bottom: 15px;
+            }
+
+            .gallery-item {
+                position: relative;
+                overflow: hidden;
+                border-radius: 10px;
+                height: 300px; /* Fixed height for better layout */
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Maintain image proportions */
+            }
+
+            /* Responsive adjustments for smaller screens */
+            @media (max-width: 768px) {
+                .gallery h1 {
+                    font-size: 28px;
+                }
+
+                .gallery-item {
+                    height: 200px; /* Reduce height for smaller screens */
+                }
+            }
+
+            @media (max-width: 480px) {
+                .gallery h1 {
+                    font-size: 24px;
+                }
+
+                .gallery-item {
+                    height: 150px; /* Further reduce height for mobile screens */
+                }
+            }
+
+            /* Keyframes for slide-in from top animation */
+            @keyframes slideFromTop {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-100vh); /* Start off-screen at the top */
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0); /* End at original position */
+                }
+            }
+
+
+            /* Footer Styles */
+            footer {
+              background-color: #4682B4;
+              color: #f1f1f1;
+              padding: 20px 0;
+              text-align: center;
+              background-attachment: fixed;
+            }
+
+            footer a {
+              color: #f1f1f1;
+              text-decoration: none;
+            }
+
+            footer a:hover {
+              color: #03C03C;
+            }
+
+            footer .logo {
+              display: flex;
+              align-items: center;
+            }
+
+            footer .address{
+             margin-top: -45px;  
+            }
+
+            footer .logo img {
+              margin-left: 20px;
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              object-fit: cover;
+              margin-right: 5px;
+              transition: transform 0.8 ease;
+            }
+             footer .logo img:hover {
+                transform: scale(1.1);
+            }
+            /* Initial state before animation for footer */
+            footer {
+              opacity: 0;
+              transform: translateY(50px); /* Move it down initially */
+              transition: all 1s ease-in-out;
+            }
+
+            /* When the footer is visible */
+            footer.visible {
+              opacity: 1;
+              transform: translateY(0); /* Move it to its original position */
+            }
+
+            .social-media a {
+              margin: 0 15px;
+              color:  white;
+              text-decoration: none;
+              transition: color 0.3s ease;
+            }
+
+            .social-media a:hover {
+              color: #00b894;
+            }
+
+            footer .social-media a {
+              transition: transform 0.3s ease, color 0.3s ease;
+            }
+
+            footer .social-media a:hover {
+              transform: scale(1.2); /* Enlarge icons on hover */
+              color: #03C03C; /* Change color */
+            }
+
+            footer p,h1,h2,img {
+              animation: fadeInFooter 3s ease-in-out;
+            }
+
+            @keyframes fadeInFooter {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+
+            /* Phone and Mail symbols */
+            .contact-info i {
+              margin-right: 10px;
+            }
+
+            .burger {
+              display: none;
+              cursor: pointer;
+              font-size: 1.8rem;
+            }
+
+          .burger:hover {
+              color: #00b894;
+          }
+
+          .menu {
+              display: flex;
+              transition: all 0.3s ease-in-out;
+          }
+
+          @media screen and (max-width: 768px) {
+              .burger {
+                  display: block;
+              }
+
+              .menu {
+                  display: none;
+                  flex-direction: column;
+                  background-color: #4682B4;
+                  position: absolute;
+                  top: 70px;
+                  width: 100%;
+              }
+
+              .menu.show {
+                  display: flex;
+              }
+
+              .menu a {
+                  padding: 0.75rem;
+                  border-bottom: 1px solid #f1f1f1;
+              }
+          }
+          
+          @media (max-width: 768px) {
+              .hero {
+                  height: 50vh; /* Reduce height for smaller screens */
+                  background-attachment: scroll; /* Disable parallax on mobile */
+                  background-size: cover; /* Ensure image covers the section */
+                  background-position: center; /* Center background image */
+                }
+
+                .hero h1 {
+                  font-size: 2.5rem;
+                }
+
+                .hero p {
+                  font-size: 1.2rem;
+                }
+        
+                .navbar {
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 10cap;
+                }
+                
+                footer p {
+                    font-size: 0.9rem;
+                    line-height: 1.4;
+                }
+
+                footer .address{
+                  margin-top: 10px;
+                }
+                .social-media a {
+                    font-size: 1.2rem;
+                }
+            }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const contactContainer = document.querySelector('.gallery');
+        const footer = document.querySelector('footer');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible'); // Add the visible class when in view
+              observer.unobserve(entry.target); // Stop observing once it's visible
+            }
+          });
+        }, {
+          threshold: 0.2 // Trigger when 20% of the element is visible
+        });
+    
+        // Observe both the contact container and footer
+        observer.observe(contactContainer);
+        observer.observe(footer);
+      });
+
+      document.addEventListener("DOMContentLoaded", function() {
+            const burger = document.querySelector('.burger');
+            const menu = document.querySelector('.menu');
+
+            burger.addEventListener('click', () => {
+                menu.classList.toggle('show');
+            });
+            burger.addEventListener('click',() =>{
+              menu.classList.toggle('close');
+            });
+        });
+    </script>
+    
+</head>
+    <body>
+        
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#"><img src="https://robotica.roboticsclubgcet.org/img/RClogo1.jpg" alt="Robotics Club Logo" loading="lazy"></a>
+                <h1><a href="#" style="color: #f1f1f1; text-decoration: none;">ROBOTICS CLUB</a></h1>
+            </div>
+            <div class="menu">
+                <a href="index.html">Home</a>
+                <a href="About.html">About</a>
+                <a href="https://robotica.roboticsclubgcet.org/index.html" target="_blank">Events</a>
+                <a href="projects.html">Projects</a>
+                <a href="Our_Team.html">Our Team</a>
+                <a href="Contact.html">Contact</a>
+            </div>
+            <div class="burger">
+              <i class="fas fa-bars"></i>
+            </div>
+          </nav>
+          <!-- Hero Section -->
+            <section class="hero">
+              <div>
+                <h1>Gallery</h1>
+                <p>Home / Our Gallery</p>
+              </div>
+            </section>
+        
+          <main>
+            <section class="gallery">
+                <h1>Our Full Gallery</h1>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src=".\Gallery\WhatsApp Image 2024-09-28 at 8.16.28 PM.jpeg" alt="Gallery Image 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src=".\Gallery\WhatsApp Image 2024-09-28 at 8.16.25 PM.jpeg" alt="Gallery Image 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src=".\Gallery\WhatsApp Image 2024-09-20 at 3.34.24 PM (1).jpeg" alt="Gallery Image 4">
+                    </div>
+                </div>
+                <div class="gallery-grid">
+                  <div class="gallery-item">
+                      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyAxrrS7RvdEDZWjdrPUE0dGOLTAmfAVa0GEXiV3j7oapB0CPbYTxyDi5WDollCE8nXegfGGViPIsvMWdDo_2euL_GKPud9mZHh6p5iTnD2z3w1ruQAi4U4dMniyhQW5l5bDp2V5nsNYweb0O_NhHQDPrqQqknwCH2wZeVYNKWUfxtU3l7Ov_emNzS3MXO/s3984/IMG_9665.jpg" alt="Gallery Image 13">
+                  </div>
+                  <div class="gallery-item">
+                      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhXaqHtbioMkM6uCdTpKdxqw3dr9hertLm6D6njb-C9gCu0hMeYSpzm2MRa-aWh4a7U1HJYwkLb595rs13LX4EhaQzNrSjLbY2WiJb7-N04mk4HHPB2fGzO8_5vyaugDv8D_KjqIqk2FtHGXf35F7OZrMJf5nl08BK9TxdkDyKVmPNQBbbBrVzA6af08vzN/s3984/IMG_9669.jpg" alt="Gallery Image 14">
+                  </div>
+                  <div class="gallery-item">
+                      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjP-NUXMPE6EWcyNbq2xRXGaro39F4SPGltB7LYpmgmZEqOCrNwOURpVQt-MS3qP7qD5HhXAfW_b2nIamUFhKTsSjek9WGc_8Yk86_eNTV1dtMsmcVXW0CMLpDWbtvte0p3AqxqbPPLxPj49IA3j6cF4jDvkPxCcbZQAnC7yWmm69jfBJ4wMd9ntGnYa1fA/s5292/Robotica-04.jpg" alt="Gallery Image 15">
+                  </div>
+              </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src=".\Gallery\WhatsApp Image 2024-09-13 at 6.13.34 PM.jpeg" alt="Gallery Image 5">
+                    </div>
+                    <div class="gallery-item">
+                        <img src=".\Gallery\WhatsApp Image 2024-09-20 at 3.34.25 PM.jpeg" alt="Gallery Image 7">
+                    </div>
+                    <div class="gallery-item">
+                        <img src=".\Gallery\WhatsApp Image 2024-09-28 at 8.16.29 PM.jpeg" alt="Gallery Image 8">
+                    </div>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEio2FAYa4d-eqtDseWcfOD0ZfFKWx6qLYaWNqNnRHNvOF2BhT0oN_f82MN0wgs5NYa5qqZwdBVInjjren30T4AtVO_1uIq9ehZ3IZI9OaJ_GfdFUagCVwDGzCGcUBrrEkelpE3cWkwDD19nZ2JO-DA2zb8u9-vA2o3c6UfYW1W9k6Eol5ArROPGELo61iER/s3512/Robotica-10.jpg" alt="Gallery Image 9">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEibvIx7loBw8amUldDpOHZzW5gliY3DlxElqBzTV05djPEIe4MBwnHXQ0KaG9GuNUD3SNCdEAsmNBFkDtHCbw4Sf_UY0YJOFyfgEMwReNfWqqSjN4cc2ZCJG237RzUKkcV6DaDj6XfpnZiYdaxkrepjOXWhLn1AItAhvKMTMii19caVeAvRBrtpf1KMpsqo/s6000/Robotica-17.jpg" alt="Gallery Image 10">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhs7ICqesfSn2aXZueDpAJfsLesAUDwf0-mZKDuGSH5tbUQrUE34mO587NbuzjU1Bar-3jqhp7U3uJrDKimeJYBz7sfg5aQV_o5VCK_98QDddkwxOEzSp-YOcORIdCF_APNtA-9vUXrYbLfUyFaUx6q2WFT6w-vioo281UbXkvwl0eCcaquYV7tXJH3oEfg/s5531/Robotica-31.jpg" alt="Gallery Image 11">
+                    </div>
+                </div>
+                <div class="gallery-grid">
+                  <div class="gallery-item">
+                      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtKi5ppa4qJ1SvyUF0G7ZSFEjY8S0TNIVHi06ZCsHgX1LJEMhH-0r7xY-mlI59QhVba35qSWRyKN00AbKFvp3Qc6c6XzFXUVuNPwzu_o5yKjGLBmR7OBoBxJbNyHvd4JxT5QtJC0kTkOKYYKN45dt0n2Pu3u_lhCUBrOUeHKFxbp2HDwE2qh9BkiAVLzKQ/s6000/_DSC4746.jpg" alt="Gallery Image 13">
+                  </div>
+                  <div class="gallery-item">
+                      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiusbyRjCAXjtKUi5Mwuegqr2yhKJranflmmMS4WGVZUMZHwjd2BkHaM6k6GyROGa59kWgAA8dWm0s8h9OQ_60efnqIJ9j8R2hF4k4e7x-dWafiQ2cJBmXksReMejeXjqqIXVig2lnVL1MSmIDoG5NrtCW04epDPOZ0NFmeUlATR3oEk-PsXd3SY8z-yjM/s3984/IMG_9396.jpg" alt="Gallery Image 14">
+                  </div>
+                  <div class="gallery-item">
+                      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjG-8V4qfYxZyEN4MPCZ_VPFD6ev0n05crAn9cc0JKDWlpUpMllopZ27_foRKEN2XZoFrwBrrEJqPHHl_umLqp7gG2IajRef8BJsd44N9c2Fd-WK-bqPe-KntFDxtz4Wscj4MjFVZaJC0caJL8zvauoBTrEQ7-LmpaUYbczG7wOXTBD40uaOTCE4TguvCj7/s3984/IMG_9365.jpg" alt="Gallery Image 15">
+                  </div>
+              </div>
+              <div class="gallery-grid">
+                <div class="gallery-item">
+                  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixmGxZRIqtY6D7HEQcUfBWhYD8EfDjCHThqVFjsyx9Gn627UBPzdWgBczj-aHgIoWClLEE7b7-xNPAiRqfg7aNQPOIcob07vTidX78lRUzki5U73fPom0nNKq_zT66I4NFrTZU7-o5NYCSRgokV8cvc1jLJoEWUvMm-4GCj8q_yhWiaxodiKi6Pek_p54W/s6000/Robotica-02.jpg" alt="Gallery Image 12">
+                </div>
+                <div class="gallery-item">
+                  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgg1Uyj-xm6qreTofmtUDXYyjwnbgrIaLqy0dmr2Gq7j3_oOFRkSXvs_vQndiLp5GqTirx7oJLP2YytpHZ1SKc3zsRHIcnwNnkzvgOxCEo0rB4vbvkoemsV7fyVszTyXhg0ehU7tqvwryzSbbAk8k-luWuPl93wHv26osdIlUNY2p9CqGc5-tIpD84IXBNR/s6000/Robotica-40.jpg" alt="Gallery Image 16">
+                </div>
+                <div class="gallery-item">
+                  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWr2FlyImXnqj1h9xRAxgZVfPcpjTrBYGzr544_KdbfFygv8mohKrYQ7i0GNpyU_3p5hprBF60kc5qxz05TSn8JV7QOsmLnB3x_sRSBUGE1k5SsPvVP0QQUNNP2Z0R4oZZFxJMO300oaKhvvjtObasUFUT9c1Qh8ay-CTfd_JuBLVClYpFjx7Za9_AB0Ad/s3984/IMG_9527.jpg" alt="Gallery Image 17">
+                </div>
+              </div>
+            </section>
+          </main>
+
+         <!-- Footer -->
+        <footer>
+          <div>
+              <div>
+                <div class="logo">
+                  <a href="#"><img src="https://robotica.roboticsclubgcet.org/img/RClogo1.jpg" alt="Robotics Club Logo"></a>
+                  <h1><a href="#" style="color: #f1f1f1; text-decoration: none;">ROBOTICS CLUB</a></h1>
+                </div>
+                <div class="address">
+                  <div>
+                    <h2>Get In Touch</h2><br>
+                    <p><i class="fas fa-map-marker-alt"></i>
+                      <a target="_blank" href="https://www.google.com/maps/place/Geethanjali+College+of+Engineering+and+Technology/@17.5205503,78.6310273,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb9d3704b16971:0x522242e0977760ef!8m2!3d17.5205503!4d78.6310273!16s%2Fm%2F0fpk6fh?entry=ttu&g_ep=EgoyMDI0MDkxNy4wIKXMDSoASAFQAw%3D%3D">
+                        Geethanjali College of Engineering<br> and Technology, Cheeryala(V) <br>Keesara(M), Medchal(D),<br> Telangana,	 INDIA,<br> Pin Code-501301
+                      </a>
+                    </p>
+                  </div>
+                  <div class="contact-info">
+                    <p><i class="fas fa-phone-alt"></i> +91 970405135</p>
+                    <p><i class="fas fa-envelope"></i><a target="_blank" href="mailto:robotics@gcet.edu.in">robotics@gcet.edu.in</a></p>
+                  </div>
+                </div>	
+              </div>
+          </div>		
+          <div><br><hr><br>
+            <p>&copy; 2024 Robotics Club, GCET</p>
+            <p> Designed By J.Sairaj & Nanda Kishore</p>
+            <div class="social-media">
+              <a target="_blank" href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQHCJbt0PrIhqQAAAZILc-pYkCMWfiMqDAYYCf7vmGh7b-W5grfglD50xhP96hkmZWT2rOl38fR5U9laoD5OzkzdMwkbp8dQ_xD1yleSnkY4iC5trTbWS_Kjj4ZKKRJcee87JEs=&original_referer=https://robotica.roboticsclubgcet.org/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Frobotics-club-gcet-0974282a6"><i class="fab fa-linkedin"></i></a>
+              <a target="_blank" href="https://x.com/i/flow/login?redirect_after_login=%2FRoboticsGCET"><i class="fab fa-twitter"></i></a>
+              <a target="_blank" href="https://www.instagram.com/roboticsclub.gcet/"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </footer>        
+    </body>
+</html>
